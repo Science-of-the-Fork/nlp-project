@@ -1,5 +1,5 @@
-# Natural Language Processing Project : Comparative Analysis of Language Usage in the Top 100 Forked GitHub Repositories
-# <bu>CLASSIFICATION PROJECT</bu>
+# Comparative Analysis of Language Usage in the Top 100 Forked GitHub Repositories
+# <bu> NATURAL LANGUAGE PROCESSING PROJECT</bu>
 by Jon Ware, Annie Carter, Scott Mattes, Migashane Victoire
 Sourced by GitHub
 
@@ -184,7 +184,8 @@ TBD
 
 
     
-## <u>LinkedIn Project Description</u> The Comparative Analysis of Language Usage project aims to explore and analyze the prevalence of programming languages between JavaScript and Python in the top 100 most forked repositories on GitHub. By scraping README data from these repositories and extracting code snippets, this project provides insights into the language preferences of developers within the open-source community. The project involves utilizing NLP techniques, including NLTK, Beautiful Soup, and regular expressions, as well as Sci-kit learn, to process the data and uncover trends in language usage. --- TBC---
+## <u> LinkedIn Project Description </u> 
+The Comparative Analysis of Language Usage project aims to explore and analyze the prevalence of programming languages between JavaScript and Python in the top 100 most forked repositories on GitHub. By scraping README data from these repositories and extracting code snippets, this project provides insights into the language preferences of developers within the open-source community. The project involves utilizing NLP techniques, including NLTK, Beautiful Soup, and regular expressions, as well as Sci-kit learn, to process the data and uncover trends in language usage. --- TBC---
     
 
 
