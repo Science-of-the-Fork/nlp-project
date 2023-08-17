@@ -6,7 +6,7 @@ Sourced by GitHub
 ![image](https://github.com/Science-of-the-Fork/nlp-project/assets/131205837/3c286317-2826-45ad-bfb6-8c9ec3a8679f)
 
 
-Science of the Fork: Tunning into the Data
+Science of the Fork: Tuning into the Data
 
 
 ## <u>Project Description</u>
