@@ -41,18 +41,18 @@ The Comparative Analysis of Language Usage project aims to explore and analyze t
 
 The initial dataset comprised # columns, which reduced to # columns after preparation. 
 
-| Original                    |   Target     |       Data Type           |       Definition             |
-|-----------------------------|------------- |--------------------------|------------------------------ |
-|Python and Java Script       |    Language  | ##### non-null  dtype   |      target variable           |
+|   Target        |  Definition             |       Data Type            |
+|-----------------|-------------------------|----------------------------|
+|Language         | Python & JavaScript     | ##### non-null  dtype      |    
 
 
 
-|     Original                |   Feature     |       Data Type          |     Definition               |
-|-----------------------------|-------------- |------------------------ |------------------------------ |
-|    TBD                      |TBD            | ##### non-null  dtype   | TBD                           |
-|    TBD                      |TBD            | ##### non-null  dtype   | TBD                           |
-|    TBD                      |TBD            | ##### non-null  dtype   | TBD                           | 
-
+|     Feature     |   Definition                                         |            
+|-----------------|-------------------------|--------------------------  |
+|title            | TBD                                                  |                       
+|original         | The initial data extracted from GitHub README files  |                   
+|cleaned          | Lowercased Tokenized Text with Latin Characters Only |                
+|lemmatized       | reducing words to their base or dictionary form      |           
 
 ## <u>Statistical Testing Hypothesis and NLP Techniques </u>
 Hypothesis 1 - Chi-squared test of independence to determine if the distribution of programming languages (JavaScript, Python) significantly differs within the READMEs.
@@ -73,7 +73,8 @@ Hypothesis 2 - Term Frequency-Inverse Document Frequency (TF-IDF) analysis to us
 |5.   |             |
 * Outcome: 
 
-Hypothesis 3 -Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in JavaScript code segments
+Hypothesis 3 -Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in JavaScript code segments.
+
 |Java Script|Freq  |
 |Bigram     |Count |
 |-----------|------|
@@ -85,8 +86,9 @@ Hypothesis 3 -Bigram frequency analysis. Identify and count the most common bigr
 
 * Outcome: 
 
-Hypothesis 4 -Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in Python code segments
-|Python|Freq  |
+Hypothesis 4 -Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in Python code segments.
+
+|Python     |Freq  |
 |Bigram     |Count |
 |-----------|------|
 |1.         |      |
@@ -108,7 +110,7 @@ Hypothesis 4 -Bigram frequency analysis. Identify and count the most common bigr
 3. Create a detailed README.md file documenting the project's context, dataset characteristics, and analysis procedure for easy reproducibility.
 
 #### Acquisition and Preparation
-1. **Acquiring Data from GitHub Readme Files by Scraping the GitHub API** Most secure a GitHub token https://github.com/settings/tokens. Utilize the GitHub API to access the README files of the selected repositories. Extract the README content using API calls for each repository. Ensure you adhere to rate limits and fetch the necessary data efficiently.
+1. **Acquiring Data from GitHub Readme Files by Scraping the GitHub API** Must secure a GitHub token https://github.com/settings/tokens. Utilize the GitHub API to access the README files of the selected repositories. Extract the README content using API calls for each repository. Ensure you adhere to rate limits and fetch the necessary data efficiently.
 2. **Cleaning and Preparing Data Using RegEx and Beautiful Soup Libraries** Process the raw README content to remove HTML tags, code snippets, and other irrelevant elements using Beautiful Soup. Employ regular expressions (RegEx) to clean the text further by eliminating special characters, punctuation, and numbers, while retaining meaningful text.
 
 3. **Cleaning and Preparing Data Using RegEx and Beautiful Soup:** Process the raw README content to remove HTML tags, code snippets, and other irrelevant elements using Beautiful Soup. Employ regular expressions (RegEx) to clean the text further by eliminating special characters, punctuation, and numbers, while retaining meaningful text.
