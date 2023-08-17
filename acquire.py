@@ -152,6 +152,7 @@ def get_github_python_data():
         res = github_api_request(python_url)
         temp_name = [REPO_NAME.append(x['hl_name']) for x in res['payload']['results']]
 
+    repo_names = []
     url_link = []
     readme_con = []
     repo_language = []
@@ -176,24 +177,86 @@ def get_github_python_data():
             # extract noisy charactures from the content
             pattern = r'"richText":"(.*?)"\s*,\s*"renderedFileInfo"'
             matches = re.findall(pattern, readme_content)
-            extracted_content = matches[0].replace("\\n","")
+            if len(matches) == 1:
+                extracted_content = matches[0].replace("\\n","")
 
-            # get repo language
-            repo_lang = get_repo_language(page_repo)
+                # get repo language
+                repo_lang = get_repo_language(page_repo)
 
-            # url and readme content of all repo
-            url_link.append(rst_file)
-            readme_con.append(extracted_content)
-            repo_language.append(repo_lang)
+                # url and readme content of all repo
+                repo_names.append(page_repo)
+                url_link.append(rst_file)
+                readme_con.append(extracted_content)
+                repo_language.append(repo_lang)
         else:
             print("Failed to connect...!")
         
-    results = pd.DataFrame(REPO_NAME, columns=["repo_name"]).assign(url = url_link, 
+    results = pd.DataFrame(repo_names, columns=["repo_name"]).assign(url = url_link, 
                                                             language = repo_language,
                                                             readme_content = readme_con)
     result.to_csv("python_data", mode= "w")
     return results
 
+
+def get_github_java_script_data():
+    # repo = 'python/cpython' # repository identification
+    # authentications
+    headers = {"Authorization": f"token {github_token}", "User-Agent": github_username}
+
+    REPO_NAME = []
+    for i in range(1, 10):
+        # url to python repos
+        python_url= f'https://github.com/search?o=desc&q=stars%3A%3E1+language%3AJavaScript&s=forks&type=Repositories&l=JavaScript&p={i}'
+
+        # get json rescponce
+        res = github_api_request(python_url)
+        # repo_content = get_repo_contents(repo)
+        temp_name = [REPO_NAME.append(x['hl_name']) for x in res['payload']['results']]
+
+    repo_names = []
+    url_link = []
+    readme_con = []
+    repo_language = []
+    rst_file= []
+    for page_repo in REPO_NAME:
+        repo_content = get_repo_contents(page_repo)
+        # locate the Readme.rst file link
+        for ele in range(len(repo_content)):
+            link = repo_content[ele]["html_url"]
+            match = re.search(f"README", link)
+            if match:
+                rst_file = link
+                break
+        # get the readme request
+        readme_res = requests.get(rst_file)
+
+        if readme_res.status_code == 200:
+            # find read me content
+            soup = BeautifulSoup(readme_res.text, 'html.parser')
+            readme_content = soup.get_text()
+
+            # extract noisy charactures from the content
+            pattern = r'"richText":"(.*?)"\s*,\s*"renderedFileInfo"'
+            matches = re.findall(pattern, readme_content)
+            if len(matches) == 1:
+                extracted_content = matches[0].replace("\\n","")
+
+                # get repo language
+                repo_lang = get_repo_language(page_repo)
+
+                # url and readme content of all repo
+                repo_names.append(page_repo)
+                url_link.append(rst_file)
+                readme_con.append(extracted_content)
+                repo_language.append(repo_lang)
+        else:
+            print("Failed to connect...!")
+            
+    results = pd.DataFrame(repo_names, columns=["repo_name"]).assign(url = url_link, 
+                                                            language = repo_language,
+                                                            readme_content = readme_con)
+    result.to_csv("java_script_data", mode= "w")
+    return results
 
 if __name__ == "__main__":
     data = scrape_github_data()
