@@ -1,36 +1,15 @@
-
-# import acquire as a
-# from env import github_token, github_username
 import warnings
 warnings.filterwarnings("ignore")
+
 import pandas as pd
 import numpy as np
 import requests
 from bs4 import BeautifulSoup
 import re
-
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix
-from sklearn.linear_model import LogisticRegression
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.tree import DecisionTreeClassifier, plot_tree
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
-import scipy.stats as stats
-from scipy.stats import  chi2_contingency
-import matplotlib.pyplot as plt
-import seaborn as sns
-from scipy.stats import ttest_ind
 import os
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
+import json
+from typing import Dict, List, Optional, Union, cast
 
-# import sys
-# sys.path.append("..")
-# import acquire as a
-# from env import github_token, github_username
 """
 A module for obtaining repo readme and language data from the github API.
 Before using this module, read through it, and follow the instructions marked
@@ -39,10 +18,6 @@ After doing so, run it like this:
     python acquire.py
 To create the `data.json` file that contains the data.
 """
-import json
-from typing import Dict, List, Optional, Union, cast
-
-
 """
 A module for obtaining repo readme and language data from the github API.
 Before using this module, read through it, and follow the instructions marked
@@ -194,7 +169,7 @@ def get_github_python_data():
     results = pd.DataFrame(repo_names, columns=["repo_name"]).assign(url = url_link, 
                                                             language = repo_language,
                                                             readme_content = readme_con)
-    result.to_csv("python_data", mode= "w")
+    results.to_csv("python_data", mode= "w")
     return results
 
 
@@ -255,7 +230,7 @@ def get_github_java_script_data():
     results = pd.DataFrame(repo_names, columns=["repo_name"]).assign(url = url_link, 
                                                             language = repo_language,
                                                             readme_content = readme_con)
-    result.to_csv("java_script_data", mode= "w")
+    results.to_csv("java_script_data", mode= "w")
     return results
 
 if __name__ == "__main__":
