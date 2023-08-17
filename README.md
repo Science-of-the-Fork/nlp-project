@@ -135,22 +135,22 @@ Hypothesis 4 -Bigram frequency analysis. Identify and count the most common bigr
 2. Utilize exploratory data analysis techniques, employing compelling visualizations and relevant statistical tests to extract meaningful patterns and relationships within the dataset.
 
 #### Modeling
-8. Carefully choose a suitable machine learning algorithm based on feature selection and features engineered, evaluating options like Gaussian Naive Bayes (Gaussian NB), Logistic Regression, Decision Trees, or Random Forests, tailored for the classification regression task.
+1. Carefully choose a suitable machine learning algorithm based on feature selection and features engineered, evaluating options like Gaussian Naive Bayes (Gaussian NB), Logistic Regression, Decision Trees, or Random Forests, tailored for the classification regression task.
 
-9. Implement the selected machine learning models using robust libraries (e.g., scikit-learn), splitting the data(50%/30%/20%), systematically evaluating multiple models with a fixed Random State value = 123 for reproducibility.
+2. Implement the selected machine learning models using robust libraries (e.g., scikit-learn), splitting the data(50%/30%/20%), systematically evaluating multiple models with a fixed Random State value = 123 for reproducibility.
 
-10. Train the models rigorously to ensure optimal learning and model performance.
+3. Train the models rigorously to ensure optimal learning and model performance.
 
-11. Conduct rigorous model validation techniques to assess model generalization capability and reliability.
+4. Conduct rigorous model validation techniques to assess model generalization capability and reliability.
 
-12. Select the most effective model(e.g Logistic Regression), based on accuracy and a thorough evaluation of metrics before selecting best model to test.
+5. Select the most effective model(e.g Logistic Regression), based on accuracy and a thorough evaluation of metrics before selecting best model to test.
 
 #### Product Delivery
-13. Assemble a final notebook, combining superior visualizations, well-trained models, and pertinent data to present comprehensive insights and conclusions with scientific rigor.
+1. Assemble a final notebook, combining superior visualizations, well-trained models, and pertinent data to present comprehensive insights and conclusions with scientific rigor.
 
-14. Generate a Prediction.csv file containing predictions from the chosen model on test data for further evaluation and utilization.
+2. Generate a Prediction.csv file containing predictions from the chosen model on test data for further evaluation and utilization.
 
-15. Maintain meticulous project documentation, adhering to scientific and professional standards, to ensure successful presentation or seamless deployment.
+3. Maintain meticulous project documentation, adhering to scientific and professional standards, to ensure successful presentation or seamless deployment.
 
 
 
