@@ -1,7 +1,47 @@
+
+# import acquire as a
+# from env import github_token, github_username
+import warnings
+warnings.filterwarnings("ignore")
+import pandas as pd
+import numpy as np
+import requests
+from bs4 import BeautifulSoup
+import re
+
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import confusion_matrix
+from sklearn.linear_model import LogisticRegression
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier, plot_tree
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import classification_report, confusion_matrix, ConfusionMatrixDisplay
+import scipy.stats as stats
+from scipy.stats import  chi2_contingency
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy.stats import ttest_ind
 import os
 import requests
 from bs4 import BeautifulSoup
 import pandas as pd
+
+# import sys
+# sys.path.append("..")
+# import acquire as a
+# from env import github_token, github_username
+"""
+A module for obtaining repo readme and language data from the github API.
+Before using this module, read through it, and follow the instructions marked
+TODO.
+After doing so, run it like this:
+    python acquire.py
+To create the `data.json` file that contains the data.
+"""
+import json
+from typing import Dict, List, Optional, Union, cast
+
 
 """
 A module for obtaining repo readme and language data from the github API.
@@ -11,11 +51,8 @@ After doing so, run it like this:
     python acquire.py
 To create the `data.json` file that contains the data.
 """
-import os
 import json
 from typing import Dict, List, Optional, Union, cast
-import requests
-
 from env import github_token, github_username
 
 # TODO: Make a github personal access token.
@@ -99,6 +136,63 @@ def scrape_github_data() -> List[Dict[str, str]]:
     Loop through all of the repos and process them. Returns the processed data.
     """
     return [process_repo(repo) for repo in REPOS]
+
+
+def get_github_python_data():
+    # repo = 'python/cpython' # repository identification
+    # authentications
+    headers = {"Authorization": f"token {github_token}", "User-Agent": github_username}
+
+    REPO_NAME = []
+    for i in range(1, 10):
+        # url to python repos
+        python_url= f'https://github.com/search?o=desc&q=stars%3A%3E1+language%3APython&s=forks&type=Repositories&p=1&l=python={i}'
+
+        # get json rescponce
+        res = github_api_request(python_url)
+        temp_name = [REPO_NAME.append(x['hl_name']) for x in res['payload']['results']]
+
+    url_link = []
+    readme_con = []
+    repo_language = []
+    rst_file= []
+    for page_repo in REPO_NAME:
+        repo_content = get_repo_contents(page_repo)
+        # locate the Readme.rst file link
+        for ele in range(len(repo_content)):
+            link = repo_content[ele]["html_url"]
+            match = re.search(f"README", link)
+            if match:
+                rst_file = link
+                break
+        # get the readme request
+        readme_res = requests.get(rst_file)
+
+        if readme_res.status_code == 200:
+            # find read me content
+            soup = BeautifulSoup(readme_res.text, 'html.parser')
+            readme_content = soup.get_text()
+
+            # extract noisy charactures from the content
+            pattern = r'"richText":"(.*?)"\s*,\s*"renderedFileInfo"'
+            matches = re.findall(pattern, readme_content)
+            extracted_content = matches[0].replace("\\n","")
+
+            # get repo language
+            repo_lang = get_repo_language(page_repo)
+
+            # url and readme content of all repo
+            url_link.append(rst_file)
+            readme_con.append(extracted_content)
+            repo_language.append(repo_lang)
+        else:
+            print("Failed to connect...!")
+        
+    results = pd.DataFrame(REPO_NAME, columns=["repo_name"]).assign(url = url_link, 
+                                                            language = repo_language,
+                                                            readme_content = readme_con)
+    result.to_csv("python_data", mode= "w")
+    return results
 
 
 if __name__ == "__main__":
