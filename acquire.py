@@ -169,7 +169,7 @@ def get_github_python_data():
     results = pd.DataFrame(repo_names, columns=["repo_name"]).assign(url = url_link, 
                                                             language = repo_language,
                                                             readme_content = readme_con)
-    results.to_csv("python_data", mode= "w")
+    results.to_csv("python_data.csv", mode= "w")
     return results
 
 
@@ -230,7 +230,7 @@ def get_github_java_script_data():
     results = pd.DataFrame(repo_names, columns=["repo_name"]).assign(url = url_link, 
                                                             language = repo_language,
                                                             readme_content = readme_con)
-    results.to_csv("java_script_data", mode= "w")
+    results.to_csv("java_script_data.csv", mode= "w")
     return results
 
 if __name__ == "__main__":
