@@ -3,6 +3,7 @@
 by Jon Ware, Annie Carter, Scott Mattes, Migashane Victoire
 Sourced by GitHub
 
+![Image](/Users/Sunshine/codeup-data-science/nlp-project/Annie/Science_of _The Fork_Logo)
 
 Trello: ?
 
