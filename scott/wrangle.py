@@ -398,25 +398,41 @@ def acquire_readmes():
         
     else:
         python_df = get_github_python_data()
-        python_df = python_df.rename(columns={'readme_content':'original'})
         javascript_df = get_github_java_script_data()
-        javascript_df = javascript_df.rename(columns={'readme_content':'original'})
         df = pd.concat([python_df, javascript_df], axis=1)
     return df
     
     
 ########################## PREPARE FUNCTION #################################
+def clean(string):
+    """
+    This function puts a string in lowercase, normalizes any unicode characters, removes anything that         
+    isn't an alphanumeric symbol or single quote.
+    """
+    # Normalize unicode characters
+    string = unicodedata.normalize('NFKD', string)\
+    .encode('ascii', 'ignore')\
+    .decode('utf-8', 'ignore')
+    
+    # Remove unwanted characters and put string in lowercase
+    string = re.sub(r"[^\w0-9'\s]", '', string).lower()
+            
+    return string
 
-def prep_readmes(df, col):
+def prep_readmes(df, col="readme_content"):
     """
     Takes in the dataframe and the column name that contains the corpus data, creates a column of cleaned data, then uses that 
     to create a column without stopwords that is lemmatized, performs a train-validate-test split, performs an x-y split, and
     returns x and y train, x and y validate, and x and y test.
     """
     # Create the cleaned column
-    print(df[col][0])
-    df['cleaned'] = df[col].apply(lambda x: clean(x))
-    df['lemmatized'] = df['cleaned'].apply(lambda x: lemmatize(remove_stopwords(x)))
+
+    cleaned_row = []
+    for i in df.readme_content.values:
+        cleaned_row.append(clean(i))
+    df = df.assign(cleaned_content=cleaned_row)
+#     df['cleaned'] = df[col].apply(lambda x: clean(x))
+    df['lemmatized'] = df['cleaned_content'].apply(lambda x: lemmatize(remove_stopwords(x)))
     
     # Split the dataframe (70/15/15)
     train, validate, test = split_readmes(df)
@@ -432,6 +448,6 @@ def prep_readmes(df, col):
 ######################### WRANGLE READMES ##################################
                                
 def wrangle_readmes():
-    train, validate, test = prep_readmes(acquire_readmes(), 'original')
+    train, validate, test = prep_readmes(acquire_readmes(), 'readme_content')
     return train, validate, test
 
