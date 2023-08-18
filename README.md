@@ -32,10 +32,7 @@ The Comparative Analysis of Language Usage project aims to explore and analyze t
 3. **Within JavaScript code segments, which bigrams, or sequential pairs of words, are commonly encountered?**
    
 4. **In the context of Python code segments, which particular bigrams, or consecutive pairs of words, emerge as prominent occurrences?**
-   
-5. **Within JavaScript code samples, what are the frequently occurring trigrams, or sequences of three words?**
-   
-6. **In Python code excerpts, what trigrams, or sets of three consecutive words, stand out as prominent linguistic patterns?**
+
 
 ## Data Dictionary
 
@@ -58,46 +55,19 @@ The initial dataset comprised # columns, which reduced to # columns after prepar
 Hypothesis 1 - Chi-squared test of independence to determine if the distribution of programming languages (JavaScript, Python) significantly differs within the READMEs.
 
 alpha = .05
-* H0 =  TBD
-* Ha = TBD
-* Outcome: We accept or reject the Null Hypothesis.
 
-Hypothesis 2 - Term Frequency-Inverse Document Frequency (TF-IDF) analysis to use scoresfor words across the repository texts, in order to identify the most significant and frequent words. Selecting the top five words based on their TF-IDF scores.
+* H0: Programming languages (JavaScript, Python) are not independent of ReadMe
+* Ha: Programming languages (JavaScript, Python) are independent of ReadMe
+* Outcome: We accept or reject the null hypothesis.
 
-|Word |TF-IDF Score |
-|-----|-------------|
-|1.   |             |
-|2.   |             |
-|3.   |             |
-|4.   |             |
-|5.   |             |
-* Outcome: 
 
-Hypothesis 3 -Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in JavaScript code segments.
+Hypothesis 2 - Term Frequency-Inverse Document Frequency (TF-IDF) analysis to use scores for words across the repository texts, in order to identify the most significant and frequent words. Selecting the top five words based on their TF-IDF scores.
 
-|Java Script|Freq  |
-|Bigram     |Count |
-|-----------|------|
-|1.         |      |
-|2.         |      |
-|3.         |      |
-|4.         |      |
-|5.         |      |
+Hypothesis 3 - Performed T-Test on the top 80 most frequent words in the curated dataset to determine which are the most 5 significant words and their relationship to Programing languages (Python and JavaScript).  Use words for future modeling.
 
-* Outcome: 
-
-Hypothesis 4 -Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in Python code segments.
-
-|Python     |Freq  |
-|Bigram     |Count |
-|-----------|------|
-|1.         |      |
-|2.         |      |
-|3.         |      |
-|4.         |      |
-|5.         |      |
-
-* Outcome: 
+* H0: Word did not show significant relationship to programming language (Python and JavaScript) 
+* Ha: Word did show signficant relationship to programming language(Python and JavaScript) 
+* Outcome: We accept or reject the null hypothesis 
 
 
 ## <u>Planning Process</u>
@@ -170,19 +140,93 @@ By following these instructions, you will be able to reproduce the analysis and 
 
 ## <u>Key Findings</u>
 
-* <span style ='color:#151E3D'> TBD
+* <span style ='color:#151E3D'> 1. Although almost equally distributed, between JavaScript and Python, Python language exhibits greater prevalence within the content of the READMEs at Python 54% to JavaScript at 46%. 
+* <span style ='color:#151E3D'> 2. The word "model" scored the highest across the repositiory ReadMe texts and was the most frequently used, especially in the Python language.The word 'function' was the second highest across all the forked repository ReadMe curated. Of note it was the most frequently used word  JavaScript language       
+* <span style ='color:#151E3D'> 3. Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in JavaScript code segments.
     
-* <span style ='color:#3D3D3D'> TBD
+|Java Script            |Freq  |
+|Bigram                 |Count |
+|-----------------------|------|
+|1. make sure           | 30   |
+|2. npm install         | 21   |
+|3. pull request        | 18   |
+|4. task implement      | 15   |
+|5. implement function  | 14   |
+    
+
+
+* <span style ='color:#151E3D'> 4. The most common bigrams (pairs of adjacent words) in JavaScript code Top 100 Forked ReadMe's were:
+
+4. Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in Python code segments.
+
+|Python                |Freq  |
+|Bigram                |Count |
+|----------------------|------|
+|1.released paper      | 579  |
+|2.et al               | 121  |
+|3.ai released         | 105  |
+|4.research released   | 102  |
+|5.language model      |  85  |
+    
+    
+## <u>Statistical and NLP Techniques Findings: </u>
+
+Hypothesis 1 - Chi-squared test determined that Programing languages were not of READMEs.We accept the null (H0) hypothesis 
+
+Hypothesis 2 - The top five words based on their TF-IDF scores.    
+    
+|Word       |TF-IDF Score |
+|-----------|-------------|
+|1. model   |  578        |
+|2. function|  298        |
+|3. test    |  242        |
+|4. use     |  232        |
+|5. code    |  255        |    
+    
+Hypothesis 3 - T-Test of the top 5 most significant words all rejected the null hypothesis.
+    
+Word: 'learning'
+T-Test Statistic: 2.2079481330226125
+P-value: 0.034534109769450407
+There is a significant difference in word 'learning' frequencies among languages.
+    
+Word: 'test'
+T-Test Statistic: -2.0819121676664314
+P-value: 0.04432285472808051
+There is a significant difference in word 'test' frequencies among languages.
+    
+Word: 'library'
+T-Test Statistic: 2.899280244376005
+P-value: 0.0070588457243989005
+There is a significant difference in word 'library' frequencies among languages.
+    
+Word: 'create'
+T-Test Statistic: -2.410692774382528
+P-value: 0.01997552965013609
+There is a significant difference in word 'create' frequencies among languages.
+    
+Word: 'line'
+T-Test Statistic: 2.2697904541958334
+P-value: 0.032487166626383894
+There is a significant difference in word 'line' frequencies among languages.
+ 
+    
     
     
 ## <u>Conclusion</u>
-TBD
+In the realm of Natural Language Processing (NLP), our analysis delved into the linguistic patterns and language prevalence within the READMEs of the top 100 most forked repositories on GitHub. Our findings uncovered several intriguing insights. Firstly, we observed a slightly higher prevalence of the Python language within README contents, constituting 54% of the distribution compared to JavaScript's 46%. Delving into the most frequently used words, "model" surfaced as a dominant term across the repository ReadMe texts, particularly pronounced within the Python language. Additionally, the word "function" held significance across all repositories, notably emerging as the most frequent term in JavaScript. Notably, we engaged in bigram frequency analysis, revealing notable pairs of adjacent words in JavaScript code segments, such as "function expression" and "npm test." ____ Need MODEL---
+
+Our exploration extended to the top 100 Forked ReadMe's, where a detailed scrutiny of bigrams in JavaScript code segments showcased common associations like "released paper," "stable diffusion," and "ross girshick." Employing statistical methods, our first hypothesis subjected programming language distribution within READMEs to a Chi-squared test of independence. The outcome revealed that programming languages were not independent of READMEs, leading us to accept the null hypothesis (H0). Lastly, the analysis ventured into Term Frequency-Inverse Document Frequency (TF-IDF) scores, revealing the top five words by their TF-IDF values: "model," "function," "test," "use," and "code," each bearing distinctive significance in the coding landscape. In summation, our comprehensive exploration of linguistic trends, prevalence, and statistical inferences has cast light on the intricate language dynamics within open-source repositories.---- NEED MODEL -------
 
 ## <u>Next Steps</u>
 
-1. TBD
-2. TBD
-3. TBD
+1. **Contextual Sentiment Analysis** Expanding beyond language prevalence, delving into sentiment analysis could provide a deeper understanding of the emotional tone within the READMEs. By employing advanced techniques such as BERT (Bidirectional Encoder Representations from Transformers) or GPT (Generative Pre-trained Transformer), we can discern not only what is being communicated but also the sentiment conveyed. This could uncover nuanced patterns in developers' sentiments, influencing their engagement and collaboration.
+
+2. **Code-Semantic Mapping** Integrating NLP with code analysis can offer insights into the semantic relationships between code snippets and natural language explanations. This involves associating code segments with their corresponding explanations to bridge the gap between technical and human-readable content. Employing techniques like code embeddings or code summarization, we can create richer, more informative READMEs that enhance comprehension for both developers and non-technical stakeholders.
+
+3. **Multilingual Analysis** and Translation: Expanding our analysis to encompass multilingual repositories can unveil language preferences across diverse coding communities. This involves handling challenges such as code-switching and language-specific idioms. Additionally, incorporating machine translation can facilitate cross-lingual insights, enabling us to bridge language barriers and gain a global perspective on coding practices and trends.
+
+
 
 ## <u>Recommendations</u>
 
