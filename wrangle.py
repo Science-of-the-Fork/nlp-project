@@ -391,16 +391,26 @@ if __name__ == "__main__":
 
 def acquire_readmes():
     """
-    Loads in the python and javascript readme data and concats them. Returns the concatted dataframe.
+    return existing data from csv in current working directory if the file exists,
+    else with web scraping methods to get the data
+        data_: 1 for python data, and 2 for java-script data
     """
-    if os.path.exists('python_data.csv'):
-        df = pd.read_csv('python_data.csv')
-        
+    py_file = "python_data.csv"
+    js_file = "java_script_data.csv"
+    
+    if os.path.exists(py_file):
+        if os.path.exists(js_file):
+            python_df = pd.read_csv(py_file)
+            js_df = pd.read_csv(js_file)
+            df = pd.concat([python_df, js_df], axis=0)
+            print("returning python and Java-script data")
+            return df
+        else: 
+            print("returning java-script data")
+            return get_github_java_script_data()
     else:
-        python_df = get_github_python_data()
-        javascript_df = get_github_java_script_data()
-        df = pd.concat([python_df, javascript_df], axis=1)
-    return df
+        print("returning Java-script data")
+        return get_github_python_data()
     
     
 ########################## PREPARE FUNCTION #################################
