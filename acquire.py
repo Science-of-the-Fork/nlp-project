@@ -233,6 +233,26 @@ def get_github_java_script_data():
     results.to_csv("java_script_data.csv", mode= "w")
     return results
 
+def get_data(data_:int=1):
+    """
+    return existing data from csv in current working directory if the file exists,
+    else with web scraping methods to get the data
+        data_: 1 for python data, and 2 for java-script data
+    """
+    if data_ == 1:
+        file = "python_data.csv"
+        if os.path.exists(file):
+            return pd.read_csv(file)
+        else:
+            return get_github_python_data()
+    elif data_ == 2:
+        file = "java_script_data.csv"
+        if os.path.exists(file):
+            return pd.read_csv(file)
+        else:
+            return get_github_java_script_data()
+
+
 if __name__ == "__main__":
     data = scrape_github_data()
     json.dump(data, open("data2.json", "w"), indent=1)
