@@ -140,8 +140,8 @@ By following these instructions, you will be able to reproduce the analysis and 
 * <span style ='color:#151E3D'> 2. The word "model" scored the highest across the repositiory ReadMe texts and was the most frequently used, especially in the Python language.The word 'function' was the second highest across all the forked repository ReadMe curated. Of note it was the most frequently used word  JavaScript language       
 * <span style ='color:#151E3D'> 3. Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in JavaScript code segments.
     
-| Java Script           |Freq  |
-| Bigram                |Count |
+
+| JavaScript Bigram     |Count |
 |-----------------------|------|
 |1. make sure           | 30   |
 |2. npm install         | 21   |
@@ -152,9 +152,8 @@ By following these instructions, you will be able to reproduce the analysis and 
 * <span style ='color:#151E3D'> 4. The most common bigrams (pairs of adjacent words) in JavaScript code Top 100 Forked ReadMe's were:
 
 4. Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in Python code segments.
-
-|Python                |Freq  |
-|Bigram                |Count |
+5. 
+|Python Bigram         |Count |
 |----------------------|------|
 |1.released paper      | 579  |
 |2.et al               | 121  |
