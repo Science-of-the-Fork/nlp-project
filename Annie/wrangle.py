@@ -1,13 +1,65 @@
-
+# Transformation 
+import pandas as pd
+import numpy as np
 import os
 import json
+import warnings
+warnings.filterwarnings("ignore")
+
+#My imports 
+import wrangle as w
+from env import github_token, github_username
+import acquire as a 
+import prepare as p
+
+
+#NLP Acquire and Preparation Techniques
 from typing import Dict, List, Optional, Union, cast
 import requests
 from bs4 import BeautifulSoup
-import pandas as pd
 from time import sleep
+import re
+import unicodedata
+import nltk
+from nltk.stem import PorterStemmer
+from nltk.tokenize import word_tokenize
+from nltk.stem import WordNetLemmatizer
+from nltk.corpus import stopwords
 
-from env import github_token, github_username
+#NLP Explore
+from pprint import pprint
+from sklearn.feature_extraction.text import CountVectorizer
+
+
+# Exploring
+from sklearn.model_selection import train_test_split
+import scipy.stats as stats
+from scipy.stats import pearsonr, spearmanr
+from scipy.stats import chi2_contingency
+
+
+# Visualizing
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+#NLP Modeling 
+
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from sklearn.metrics import accuracy_score, classification_report
+from sklearn.linear_model import LogisticRegression
+from sklearn.svm import SVC
+
+#Modeling methods
+from sklearn.metrics import mean_squared_error
+from sklearn.linear_model import LinearRegression, LassoLars, TweedieRegressor
+from sklearn.preprocessing import PolynomialFeatures
+from sklearn.metrics import explained_variance_score
+
+#CodeUp visualize scaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler, RobustScaler,QuantileTransformer
+
 
 
 
@@ -20,6 +72,83 @@ from env import github_token, github_username
 
 
 #----------ACQUIRE----------------------------
+
+REPOS = []
+ 
+
+headers = {"Authorization": f"token {github_token}", "User-Agent": github_username}
+
+if headers["Authorization"] == "token " or headers["User-Agent"] == "":
+    raise Exception(
+        "You need to follow the instructions marked TODO in this script before trying to use it"
+    )
+
+
+def github_api_request(url: str) -> Union[List, Dict]:
+    response = requests.get(url, headers=headers)
+    response_data = response.json()
+    if response.status_code != 200:
+        raise Exception(
+            f"Error response from github api! status code: {response.status_code}, "
+            f"response: {json.dumps(response_data)}"
+        )
+    return response_data
+
+
+def get_repo_language(repo: str) -> str:
+    url = f"https://api.github.com/repos/{repo}"
+    repo_info = github_api_request(url)
+    if type(repo_info) is dict:
+        repo_info = cast(Dict, repo_info)
+        return repo_info.get("language", None)
+    raise Exception(
+        f"Expecting a dictionary response from {url}, instead got {json.dumps(repo_info)}"
+    )
+
+
+def get_repo_contents(repo: str) -> List[Dict[str, str]]:
+    url = f"https://api.github.com/repos/{repo}/contents/"
+    contents = github_api_request(url)
+    if type(contents) is list:
+        contents = cast(List, contents)
+        return contents
+    raise Exception(
+        f"Expecting a list response from {url}, instead got {json.dumps(contents)}"
+    )
+
+
+def get_readme_download_url(files: List[Dict[str, str]]) -> str:
+    """
+    Takes in a response from the github api that lists the files in a repo and
+    returns the url that can be used to download the repo's README file.
+    """
+    for file in files:
+        if file["name"].lower().startswith("readme"):
+            return file["download_url"]
+    return ""
+
+
+def process_repo(repo: str) -> Dict[str, str]:
+    """
+    Takes a repo name like "gocodeup/codeup-setup-script" and returns a
+    dictionary with the language of the repo and the readme contents.
+    """
+    contents = get_repo_contents(repo)
+    readme_contents = requests.get(get_readme_download_url(contents)).text
+    return {
+        "repo": repo,
+        "language": get_repo_language(repo),
+        "readme_contents": readme_contents,
+    }
+
+
+def scrape_github_data() -> List[Dict[str, str]]:
+    """
+    Loop through all of the repos and process them. Returns the processed data.
+    """
+    return [process_repo(repo) for repo in REPOS]
+
+
 def get_github_python_data():
     # repo = 'python/cpython' # repository identification
     # authentications
@@ -158,8 +287,10 @@ def nlp_clean(text, extra_words=None, exclude_words=None):
     
     return filtered_text
 
-# Then the nlp_clean function to create a new column 'cleaned'
-language_df['cleaned'] = language_df['readme_content'].apply(nlp_clean)
+def cleaned_col():
+    # Then the nlp_clean function to create a new column 'cleaned'
+    language_df['cleaned'] = language_df['readme_content'].apply(nlp_clean)
+    return language_df
 
 
 
@@ -192,62 +323,10 @@ def lemmatize_text(text, extra_words=None, exclude_words=None):
     
     return filtered_text
 
-# Example usage on a DataFrame's "readme_content" column
-language_df['lemmatized'] = language_df['original'].apply(lemmatize_text)
+def lemmatized_col():
+    language_df['lemmatized'] = language_df['original'].apply(lemmatize_text)
 
     
-def get_clean_df() -> pd.DataFrame:
-    '''
-    Acquires the data from acquire helper file, saves it into a data frame.
-    Cleans columns by appying cleaning functions from this file.
-    Return:
-        df: pd.DataFrame -> cleaned data frame
-    '''
-
-    # acquire a data from inshorts.com website
-    df = pd.DataFrame(acquire.scrape_github_data())
-    # news_df transformations
-    # rename columns
-    df.rename({'readme_contents':'original'}, axis=1, inplace=True)
-    # create a column 'first_clean' hlml and markdown removed
-    df['first_clean'] = df.original.apply(clean_html_markdown)
-    # create a column 'clean' lower case, ascii, no stopwords
-    df['clean'] = df.first_clean.apply(basic_clean).apply(tokenize).apply(remove_stopwords,extra_words=["'", 'space'])
-    # only stems
-    #df['stemmed'] = news_df.clean.apply(stem)
-    # only lemmas
-    df['lemmatized'] = df.clean.apply(lemmatize)
-    # ENGINEER FEATURES BASED ON THE CLEAN TEXT COLUMN
-    sia = nltk.sentiment.SentimentIntensityAnalyzer()
-    # adds counpound sentiment score
-    df['sentiment'] = df['clean'].apply(lambda doc: sia.polarity_scores(doc)['compound'])
-    # numerical
-    df['lemm_len'] = df.lemmatized.str.len()
-    df['original_length'] = df.original.str.len()
-    df['clean_length'] = df.clean.str.len()
-    df['length_diff'] = df.original_length - df.clean_length
-    # categorical
-    df['has_#9'] = np.where(df.clean.str.contains('&#9;'), 1, 0)
-    df['has_parts'] = np.where((df.clean.str.contains(' part ')) | (df.clean.str.contains('parts')), 1, 0)
-    df['has_fix'] = np.where(df.clean.str.contains(' fix '), 1, 0)
-    df['has_tab'] = np.where(df.clean.str.contains(' tab '), 1, 0)
-    df['has_x'] = np.where(df.clean.str.contains(' x '), 1, 0)
-    df['has_v'] = np.where(df.clean.str.contains(' v '), 1, 0)
-    df['has_codeblock'] = np.where(df.clean.str.contains('codeblock'), 1, 0)
-    df['has_image'] = np.where(df.clean.str.contains('image'), 1, 0)
-    # change language to category
-    df.language = pd.Categorical(df.language)
-    # drop repo column
-    df.drop('repo', axis=1, inplace=True)
-    # drop 'clean_length' columns, as it is part of length_diff column
-    df.drop('clean_length', axis=1, inplace=True)
-    # reorder columns
-    new_order = ['original', 'clean', 'lemmatized', 'lemm_len',
-        'original_length', 'length_diff', 'has_#9', 'has_tab',\
-        'has_parts', 'has_fix', 'has_x', 'has_v',\
-       'has_codeblock', 'has_image', 'language']
-    df = df[new_order]
-    return df
 
 def prep_process_csv(language_df):
     '''This function drops unneeded columns and creates a csv for processed language_to explore
@@ -257,7 +336,7 @@ def prep_process_csv(language_df):
     
     # Save the modified DataFrame to a new CSV file
     language_df.to_csv('processed_language_df.csv', index=False)
-prep_process_csv(language_df)
+    prep_process_csv(language_df)
 
 
 #---------------Q1-------
@@ -268,7 +347,7 @@ def Q1_pie(language_df):
     
     # Create a pie chart
     plt.figure(figsize=(8, 8))
-    plt.pie(language_counts, labels=language_counts.index, autopct='%1.1f%%', colors=['green', 'yellow'])
+    plt.pie(language_counts, labels=language_counts.index, autopct='%1.1f%%',  colors=['#4584B6', '#FFDE57'])
     plt.title('Distribution of Python vs JavaScript Languages')
     plt.show()
     
@@ -349,9 +428,9 @@ def top_10_words(language_df):
     # Plotting
     plt.figure(figsize=(10, 10))
     
-    original_plot = original_words[:10].plot(kind='bar', color='blue', alpha=0.7, label='Original')
-    cleaned_plot = cleaned_words[:10].plot(kind='bar', color='green', alpha=0.7, label='Cleaned')
-    lemmatized_plot = lemmatized_words[:10].plot(kind='bar', color='orange', alpha=0.7, label='Lemmatized')
+    original_plot = original_words[:10].plot(kind='bar', color='#757575', alpha=0.7, label='Original')
+    cleaned_plot = cleaned_words[:10].plot(kind='bar', color='#7AA5D2', alpha=0.7, label='Cleaned')
+    lemmatized_plot = lemmatized_words[:10].plot(kind='bar', color='#48AAAD', alpha=0.7, label='Lemmatized')
     
     # Annotate bars with their counts
     for p in original_plot.patches:
@@ -406,8 +485,10 @@ def Q3_PyBigram_barplot(language_df):
 #------------Q4--------------------
 
 def Q4_PyTrigram_barplot(language_df):
-    
-    top_20_python_trigrams = (pd.Series(nltk.ngrams(Py_lemmatized, 3))
+    # Lemmatized column
+    Py_lemmatized = language_df[language_df['language'] == 'Python']['lemmatized'].str.split().explode()
+    #Top 20 Bigrams
+    top_20_python_bigrams = (pd.Series(nltk.ngrams(Py_lemmatized, 2))
                           .value_counts()
                           .head(20))
     
@@ -474,6 +555,7 @@ def Q5_JsBigram_barplot(language_df):
     plt.show()
 #-----------------Q6----------------
 def Q6_JsTrigram_barplot(language_df):
+    Js_lemmatized = language_df[language_df['language'] == 'JavaScript']['lemmatized'].str.split().explode()
     top_20_javascript_trigrams = (pd.Series(nltk.ngrams(Js_lemmatized, 3))
                           .value_counts()
                           .head(20))
@@ -504,7 +586,7 @@ def Q6_JsTrigram_barplot(language_df):
     plt.show()
 
 #----------TF-IDF-----------
-def tf_idf():
+def tf_idf(language_df):
     '''
     This function takes in a dataframe and splits it into 3 data sets
     Test is 20% of the original dataset, validate is .30*.80= 24% of the 
