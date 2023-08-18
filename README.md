@@ -40,22 +40,20 @@ The initial dataset comprised # columns, which reduced to # columns after prepar
 
 |   Target        |  Definition             |       Data Type            |
 |-----------------|-------------------------|----------------------------|
-|Language         | Python & JavaScript     | ##### non-null  dtype      |    
-
-
+|Language         | Python & JavaScript     |                            |    
 
 |     Feature     |   Definition                                         |            
-|-----------------|-------------------------|--------------------------  |
+|-----------------|-------------------------|----------------------------|
 |title            | TBD                                                  |                       
 |original         | The initial data extracted from GitHub README files  |                   
 |cleaned          | Lowercased Tokenized Text with Latin Characters Only |                
 |lemmatized       | reducing words to their base or dictionary form      |           
 
 ## <u>Statistical Testing Hypothesis and NLP Techniques </u>
+
 Hypothesis 1 - Chi-squared test of independence to determine if the distribution of programming languages (JavaScript, Python) significantly differs within the READMEs.
 
 alpha = .05
-
 * H0: Programming languages (JavaScript, Python) are not independent of ReadMe
 * Ha: Programming languages (JavaScript, Python) are independent of ReadMe
 * Outcome: We accept or reject the null hypothesis.
@@ -63,7 +61,7 @@ alpha = .05
 
 Hypothesis 2 - Term Frequency-Inverse Document Frequency (TF-IDF) analysis to use scores for words across the repository texts, in order to identify the most significant and frequent words. Selecting the top five words based on their TF-IDF scores.
 
-Hypothesis 3 - Performed T-Test on the top 80 most frequent words in the curated dataset to determine which are the most 5 significant words and their relationship to Programing languages (Python and JavaScript).  Use words for future modeling.
+Hypothesis 3 - T-Test will be performed on the top 80 most frequent words in the curated dataset to determine which are the most 5 significant words and their relationship to Programing languages (Python and JavaScript).  Use words for future modeling.
 
 * H0: Word did not show significant relationship to programming language (Python and JavaScript) 
 * Ha: Word did show signficant relationship to programming language(Python and JavaScript) 
@@ -124,8 +122,6 @@ Hypothesis 3 - Performed T-Test on the top 80 most frequent words in the curated
 
 3. Maintain meticulous project documentation, adhering to scientific and professional standards, to ensure successful presentation or seamless deployment.
 
-
-
 ## <u>Instructions to Reproduce the Final Project Notebook</u> 
 To successfully run/reproduce the final project notebook, please follow these steps:
 
@@ -144,16 +140,14 @@ By following these instructions, you will be able to reproduce the analysis and 
 * <span style ='color:#151E3D'> 2. The word "model" scored the highest across the repositiory ReadMe texts and was the most frequently used, especially in the Python language.The word 'function' was the second highest across all the forked repository ReadMe curated. Of note it was the most frequently used word  JavaScript language       
 * <span style ='color:#151E3D'> 3. Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in JavaScript code segments.
     
-|Java Script            |Freq  |
-|Bigram                 |Count |
+| Java Script           |Freq  |
+| Bigram                |Count |
 |-----------------------|------|
 |1. make sure           | 30   |
 |2. npm install         | 21   |
 |3. pull request        | 18   |
 |4. task implement      | 15   |
 |5. implement function  | 14   |
-    
-
 
 * <span style ='color:#151E3D'> 4. The most common bigrams (pairs of adjacent words) in JavaScript code Top 100 Forked ReadMe's were:
 
