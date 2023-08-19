@@ -33,9 +33,9 @@ The Comparative Analysis of Language Usage project aims to explore and analyze t
    
 4. **In the context of Python code segments, which particular bigrams, or consecutive pairs of words, emerge as prominent occurrences?**
 
-5. **JavaScript code segments, what are the most frequent unigrams encountered?
+5. **JavaScript code segments, what are the most frequent unigrams encountered?**
 
-6. **Python code segments which unigrams have highest frequency?
+6. **Python code segments which unigrams have highest frequency?**
 
 
 ## Data Dictionary
