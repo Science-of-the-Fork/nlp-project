@@ -42,17 +42,17 @@ The Comparative Analysis of Language Usage project aims to explore and analyze t
 
 The initial dataset comprised # columns, which reduced to # columns after preparation. 
 
-|   Attribute     |   Definition                                        |       Data Type            |
-|-----------------|-----------------------------------------------------|----------------------------|
-|Language         |Python & JavaScript language the project was written |    string                  |    
+|   Attribute     |   Definition                                        | Data Type|
+|-----------------|-----------------------------------------------------|----------|
+|Language         |Python & JavaScript language the project was written | string   |    
 
-|   Attribute     |   Definition                                        |            
-|-----------------|-----------------------------------------------------|----------------------------|
-|repo_name        |the name of the source repository                    |    string                  |                       
-|readme_content   |the original readme content                          |    string                  |
-|url              |the path of the source repository                    |    string                  |
-|cleaned_content  |Lowercased Tokenized Text with Latin Characters Only |    string                  |
-|lemmatized       |reducing words to their base or dictionary form      |    string                  |
+|   Attribute     |   Definition                                        |          |  
+|-----------------|-----------------------------------------------------|----------|
+|repo_name        |the name of the source repository                    | string   |                       
+|readme_content   |the original readme content                          | string   |
+|url              |the path of the source repository                    | string   |
+|cleaned_content  |Lowercased Tokenized Text with Latin Characters Only | string   |
+|lemmatized       |reducing words to their base or dictionary form      | string   |
 
 
 ## <u>Statistical Testing Hypothesis and NLP Techniques </u>
