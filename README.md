@@ -1,7 +1,7 @@
 # Comparative Analysis of Language Usage in the Top 100 Forked GitHub Repositories
 # <bu> NATURAL LANGUAGE PROCESSING PROJECT</bu>
 by Jon Ware, Annie Carter, Scott Mattes, Migashane Victoire
-Sourced by GitHub
+Sourced by GitHub pulled August 18, 2023
 
 ![image](https://github.com/Science-of-the-Fork/nlp-project/assets/131205837/3c286317-2826-45ad-bfb6-8c9ec3a8679f)
 
@@ -33,21 +33,27 @@ The Comparative Analysis of Language Usage project aims to explore and analyze t
    
 4. **In the context of Python code segments, which particular bigrams, or consecutive pairs of words, emerge as prominent occurrences?**
 
+5. **JavaScript code segments, what are the most frequent unigrams encountered?
+
+6. **Python code segments which unigrams have highest frequency?
+
 
 ## Data Dictionary
 
 The initial dataset comprised # columns, which reduced to # columns after preparation. 
 
-|   Target        |  Definition             |       Data Type            |
-|-----------------|-------------------------|----------------------------|
-|Language         | Python & JavaScript     |                            |    
+|   Attribute     |   Definition                                        |       Data Type            |
+|-----------------|-----------------------------------------------------|----------------------------|
+|Language         |Python & JavaScript language the project was written |    string                  |    
 
-|     Feature     |   Definition                                         |            
-|-----------------|-------------------------|----------------------------|
-|title            | TBD                                                  |                       
-|original         | The initial data extracted from GitHub README files  |                   
-|cleaned          | Lowercased Tokenized Text with Latin Characters Only |                
-|lemmatized       | reducing words to their base or dictionary form      |           
+|   Attribute     |   Definition                                        |            
+|-----------------|-----------------------------------------------------|----------------------------|
+|repo_name        |the name of the source repository                    |    string                  |                       
+|readme_content   |the original readme content                          |    string                  |
+|url              |the path of the source repository                    |    string                  |
+|cleaned_content  |Lowercased Tokenized Text with Latin Characters Only |    string                  |
+|lemmatized       |reducing words to their base or dictionary form      |    string                  |
+
 
 ## <u>Statistical Testing Hypothesis and NLP Techniques </u>
 
@@ -207,10 +213,11 @@ There is a significant difference in word 'line' frequencies among languages.
     
     
 ## <u>Conclusion</u>
-In the realm of Natural Language Processing (NLP), our analysis delved into the linguistic patterns and language prevalence within the READMEs of the top 100 most forked repositories on GitHub. Our findings uncovered several intriguing insights. Firstly, we observed a slightly higher prevalence of the Python language within README contents, constituting 54% of the distribution compared to JavaScript's 46%. Delving into the most frequently used words, "model" surfaced as a dominant term across the repository ReadMe texts, particularly pronounced within the Python language. Additionally, the word "function" held significance across all repositories, notably emerging as the most frequent term in JavaScript. Notably, we engaged in bigram frequency analysis, revealing notable pairs of adjacent words in JavaScript code segments, such as "function expression" and "npm test." ____ Need MODEL---
+In the realm of Natural Language Processing (NLP), our analysis delved into the linguistic patterns and language prevalence within the READMEs of the top 100 most forked repositories on GitHub. Our findings uncovered several intriguing insights. Firstly, we observed a slightly higher prevalence of the Python language within README contents, constituting 54% of the distribution compared to JavaScript's 46%. Delving into the most frequently used words, "model" surfaced as a dominant term across the repository ReadMe texts, particularly pronounced within the Python language. Additionally, the word "function" held significance across all repositories, notably emerging as the most frequent term in JavaScript. Notably, we engaged in bigram frequency analysis, revealing notable pairs of adjacent words in JavaScript code segments, such as "function expression" and "npm test." 
 
-Our exploration extended to the top 100 Forked ReadMe's, where a detailed scrutiny of bigrams in JavaScript code segments showcased common associations like "released paper," "stable diffusion," and "ross girshick." Employing statistical methods, our first hypothesis subjected programming language distribution within READMEs to a Chi-squared test of independence. The outcome revealed that programming languages were not independent of READMEs, leading us to accept the null hypothesis (H0). Lastly, the analysis ventured into Term Frequency-Inverse Document Frequency (TF-IDF) scores, revealing the top five words by their TF-IDF values: "model," "function," "test," "use," and "code," each bearing distinctive significance in the coding landscape. In summation, our comprehensive exploration of linguistic trends, prevalence, and statistical inferences has cast light on the intricate language dynamics within open-source repositories.---- NEED MODEL -------
-
+Our investigation extends beyond linguistics, embracing statistical and machine learning methodologies. The Chi-squared test confirms the intertwined relationship between programming language distribution and README content. Furthermore, t-tests on the top five most significant words unveil substantial frequency differences, deepening our understanding of language nuances. Incorporating classification models, the K-Nearest Neighbors (KNN) model emerges as a standout, achieving 88% accuracy in predicting language based on README content. In essence, our analysis encapsulates the multifaceted landscape of programming languages, offering insights that resonate with developers, stakeholders, and the evolving world of open-source coding practices.
+    
+    
 ## <u>Next Steps</u>
 
 1. **Contextual Sentiment Analysis** Expanding beyond language prevalence, delving into sentiment analysis could provide a deeper understanding of the emotional tone within the READMEs. By employing advanced techniques such as BERT (Bidirectional Encoder Representations from Transformers) or GPT (Generative Pre-trained Transformer), we can discern not only what is being communicated but also the sentiment conveyed. This could uncover nuanced patterns in developers' sentiments, influencing their engagement and collaboration.
@@ -222,11 +229,14 @@ Our exploration extended to the top 100 Forked ReadMe's, where a detailed scruti
 
 
 ## <u>Recommendations</u>
+1. **Leverage K-Nearest Neighbors (KNN) for Future Modeling:** Given the success of the KNN classification model with an impressive accuracy of 88%, consider using KNN as a go-to choice for future language prediction tasks. Its ability to predict programming languages based on README content showcases its potential as a reliable and efficient tool in language analysis.
 
+2. **Language-Specific Documentation Enhancement:** Recognizing Python's higher prevalence in READMEs, capitalize on this trend by enhancing language-specific documentation. Develop comprehensive examples, tutorials, and best practices that cater to Python's prevalent usage. This approach will aid developers, especially newcomers to Python, in quickly grasping essential concepts and utilizing the language's features effectively.
+
+3. **Code Reusability and Patterns:** Responding to the significance of "model" and "function" as highly frequent terms, prioritize the promotion of code reusability and design patterns associated with these concepts. Craft libraries, modules, or templates that encapsulate common functionalities or algorithms related to models and functions. This strategic approach fosters efficient development, encourages uniform coding practices, and contributes to cohesive project architectures.
 
     
-## <u> LinkedIn Project Description </u> 
-The Comparative Analysis of Language Usage project aims to explore and analyze the prevalence of programming languages between JavaScript and Python in the top 100 most forked repositories on GitHub. By scraping README data from these repositories and extracting code snippets, this project provides insights into the language preferences of developers within the open-source community. The project involves utilizing NLP techniques, including NLTK, Beautiful Soup, and regular expressions, as well as Sci-kit learn, to process the data and uncover trends in language usage. --- TBC---
+
     
 
 
