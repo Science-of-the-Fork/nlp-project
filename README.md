@@ -182,36 +182,14 @@ Hypothesis 2 - The top five words based on their TF-IDF scores.
 |4. use     |  232        |
 |5. code    |  255        |    
     
-Hypothesis 3 - T-Test of the top 5 most significant words all rejected the null hypothesis.
-    
-Word: 'learning'
-T-Test Statistic: 2.2079481330226125
-P-value: 0.034534109769450407
-There is a significant difference in word 'learning' frequencies among languages.
-    
-Word: 'test'
-T-Test Statistic: -2.0819121676664314
-P-value: 0.04432285472808051
-There is a significant difference in word 'test' frequencies among languages.
-    
-Word: 'library'
-T-Test Statistic: 2.899280244376005
-P-value: 0.0070588457243989005
-There is a significant difference in word 'library' frequencies among languages.
-    
-Word: 'create'
-T-Test Statistic: -2.410692774382528
-P-value: 0.01997552965013609
-There is a significant difference in word 'create' frequencies among languages.
-    
-Word: 'line'
-T-Test Statistic: 2.2697904541958334
-P-value: 0.032487166626383894
-There is a significant difference in word 'line' frequencies among languages.
- 
-    
-    
-    
+Hypothesis 3 - T-Test of the top 5 most significant words:
+1. learning
+2. test
+3. library
+4. create
+5. line
+* Outcome - Ha: They all rejected the null hypothesis and showed relationship to the program language.
+
 ## <u>Conclusion</u>
 In the realm of Natural Language Processing (NLP), our analysis delved into the linguistic patterns and language prevalence within the READMEs of the top 100 most forked repositories on GitHub. Our findings uncovered several intriguing insights. Firstly, we observed a slightly higher prevalence of the Python language within README contents, constituting 54% of the distribution compared to JavaScript's 46%. Delving into the most frequently used words, "model" surfaced as a dominant term across the repository ReadMe texts, particularly pronounced within the Python language. Additionally, the word "function" held significance across all repositories, notably emerging as the most frequent term in JavaScript. Notably, we engaged in bigram frequency analysis, revealing notable pairs of adjacent words in JavaScript code segments, such as "function expression" and "npm test." 
 
