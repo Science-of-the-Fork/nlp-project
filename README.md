@@ -7,6 +7,19 @@ Sourced by GitHub pulled August 18, 2023
 
 
 Science of the Fork: Tuning into the Data
+___
+
+<a id='navigation'></a>
+[[Project Description](#project-description)]
+[[Statistical Testing Hypothesis and NLP Techniques](#statistical-hypotheses-and-nlp-techniques)]
+[[Data Dictionary](#data-dictionary)]
+[[Planning_Process](#planning-process)]
+[[Project Reproduction](#project-reproduction)]
+[[Key Findings](#key-findings)]
+[[Statistical and NLP Techniques Findings](#statistical-and-nlp-techniques-findings)]
+[[Next Steps](#next-steps)]
+[[Conclusion](#conclusion)]
+[[Recommendations](#recommendations)]
 
 
 ## <u>Project Description</u>
@@ -22,6 +35,8 @@ The Comparative Analysis of Language Usage project aims to explore and analyze t
 
 3. **Provide Insights and Visualizations:**
    Produce meaningful insights and visualizations that effectively communicate the language usage trends between JavaScript and Python. Create a variety of visual representations, such as bar charts, heatmaps, and language distribution plots, to offer a clear and comprehensive view of how these two languages are utilized within the top 100 GitHub repositories.
+   
+[Jump to Navigation](#navigation)
 
 ## <u>Initial Questions</u>
 
@@ -37,6 +52,7 @@ The Comparative Analysis of Language Usage project aims to explore and analyze t
 
 6. **Python code segments which unigrams have highest frequency?**
 
+[Jump to Navigation](#navigation)
 
 ## Data Dictionary
 
@@ -54,6 +70,7 @@ The initial dataset comprised # columns, which reduced to # columns after prepar
 |cleaned_content  |Lowercased Tokenized Text with Latin Characters Only | string   |
 |lemmatized       |reducing words to their base or dictionary form      | string   |
 
+[Jump to Navigation](#navigation)
 
 ## <u>Statistical Testing Hypothesis and NLP Techniques </u>
 
@@ -73,6 +90,7 @@ Hypothesis 3 - T-Test will be performed on the top 80 most frequent words in the
 * Ha: Word did show signficant relationship to programming language(Python and JavaScript) 
 * Outcome: We accept or reject the null hypothesis 
 
+[Jump to Navigation](#navigation)
 
 ## <u>Planning Process</u>
 
@@ -98,22 +116,22 @@ Hypothesis 3 - T-Test will be performed on the top 80 most frequent words in the
 7. Safeguard proprietary aspects of the project by implementing confidentiality and data security measures, using .gitignore to exclude sensitive information.
 
 #### Exploratory Analysis
-1. **Exploring Data for Relevant Keyword Grouping Using Bi-grams and Trigrams:** Implement a mechanism to tokenize the cleaned text into words. Create bi-grams (pairs of adjacent words) and trigrams (sequences of three consecutive words) from the tokenized text. Calculate the frequency of these word sequences within the repository data.
+1. **Exploring Data for Relevant Keyword Grouping Using Bi-grams and Unigrams:** Implement a mechanism to tokenize the cleaned text into words. Create bi-grams (pairs of adjacent words) and unigram (single word or ) from the tokenized text. Calculate the frequency of these word sequences within the repository data.
 
    This step involves:
    - Tokenization: Split the cleaned text into individual words.
    - Bi-gram Generation: Form pairs of adjacent words to create bi-grams.
-   - Trigram Generation: Generate sequences of three adjacent words to create trigrams.
-   - Frequency Calculation: Count the occurrences of each bi-gram and trigram.
+   - Unigram Generation: Generate sequences of single word .
+   - Frequency Calculation: Count the occurrences of each bi-gram and unigram.
 
-   By analyzing the most frequent bi-grams and trigrams, you can identify keyword groupings that occur frequently in the READMEs. These groupings could represent significant terms, programming concepts, or patterns prevalent across the repositories.
+   By analyzing the most frequent bi-grams and unigrams, you can identify keyword groupings that occur frequently in the READMEs. These groupings could represent significant terms, programming concepts, or patterns prevalent across the repositories.
 
 2. Utilize exploratory data analysis techniques, employing compelling visualizations and relevant statistical tests to extract meaningful patterns and relationships within the dataset.
 
 #### Modeling
-1. Carefully choose a suitable machine learning algorithm based on feature selection and features engineered, evaluating options like Gaussian Naive Bayes (Gaussian NB), Logistic Regression, Decision Trees, or Random Forests, tailored for the classification regression task.
+1. Carefully choose a suitable machine learning algorithm based on feature selection and features engineered, evaluating options like K- Nearest Neighbor, Logistic Regression, Decision Trees, or Random Forests, tailored for the classification regression task.
 
-2. Implement the selected machine learning models using robust libraries (e.g., scikit-learn), splitting the data(50%/30%/20%), systematically evaluating multiple models with a fixed Random State value = 123 for reproducibility.
+2. Implement the selected machine learning models using robust libraries (e.g., scikit-learn), splitting the data, systematically evaluating multiple models with a fixed Random State value = 123 for reproducibility.
 
 3. Train the models rigorously to ensure optimal learning and model performance.
 
@@ -127,6 +145,8 @@ Hypothesis 3 - T-Test will be performed on the top 80 most frequent words in the
 2. Generate a Prediction.csv file containing predictions from the chosen model on test data for further evaluation and utilization.
 
 3. Maintain meticulous project documentation, adhering to scientific and professional standards, to ensure successful presentation or seamless deployment.
+
+[Jump to Navigation](#navigation)
 
 ## <u>Instructions to Reproduce the Final Project Notebook</u> 
 To successfully run/reproduce the final project notebook, please follow these steps:
@@ -167,7 +187,8 @@ By following these instructions, you will be able to reproduce the analysis and 
 |4.research released   | 102  |
 |5.language model      |  85  |
     
-    
+[Jump to Navigation](#navigation)    
+
 ## <u>Statistical and NLP Techniques Findings: </u>
 
 Hypothesis 1 - Chi-squared test determined that Programing languages were not of READMEs.We accept the null (H0) hypothesis 
@@ -189,31 +210,35 @@ Hypothesis 3 - T-Test of the top 5 most significant words:
 4. create
 5. line
 * Outcome - Ha: They all rejected the null hypothesis and showed relationship to the program language.
+* 
+[Jump to Navigation](#navigation)
 
 ## <u>Conclusion</u>
 In the realm of Natural Language Processing (NLP), our analysis delved into the linguistic patterns and language prevalence within the READMEs of the top 100 most forked repositories on GitHub. Our findings uncovered several intriguing insights. Firstly, we observed a slightly higher prevalence of the Python language within README contents, constituting 54% of the distribution compared to JavaScript's 46%. Delving into the most frequently used words, "model" surfaced as a dominant term across the repository ReadMe texts, particularly pronounced within the Python language. Additionally, the word "function" held significance across all repositories, notably emerging as the most frequent term in JavaScript. Notably, we engaged in bigram frequency analysis, revealing notable pairs of adjacent words in JavaScript code segments, such as "function expression" and "npm test." 
 
-Our investigation extends beyond linguistics, embracing statistical and machine learning methodologies. The Chi-squared test confirms the intertwined relationship between programming language distribution and README content. Furthermore, t-tests on the top five most significant words unveil substantial frequency differences, deepening our understanding of language nuances. Incorporating classification models, the K-Nearest Neighbors (KNN) model emerges as a standout, achieving 88% accuracy in predicting language based on README content. In essence, our analysis encapsulates the multifaceted landscape of programming languages, offering insights that resonate with developers, stakeholders, and the evolving world of open-source coding practices.
+Our investigation extends beyond linguistics, embracing statistical and machine learning methodologies. The Chi-squared test confirms the intertwined relationship between programming language distribution and README content. Furthermore, t-tests on the top five most significant words unveil substantial frequency differences, deepening our understanding of language nuances. Incorporating classification models (Decision Tree, Random Forest, K-Nearest Neighbor, Logistic Regression, we will not use any of the classification models as none beat baseline and the model that ran the best was RandomForest which produced a Test score of 38%, 16% below baseline accuracy.  In essence, our analysis encapsulates the multifaceted landscape and challenges of predicting programming languages of GitHub README.md, while offering insights on words that resonate with Github users, developers and the evolving world of open-source coding practices.
     
-    
+[Jump to Navigation](#navigation)
+
 ## <u>Next Steps</u>
 
-1. **Contextual Sentiment Analysis** Expanding beyond language prevalence, delving into sentiment analysis could provide a deeper understanding of the emotional tone within the READMEs. By employing advanced techniques such as BERT (Bidirectional Encoder Representations from Transformers) or GPT (Generative Pre-trained Transformer), we can discern not only what is being communicated but also the sentiment conveyed. This could uncover nuanced patterns in developers' sentiments, influencing their engagement and collaboration.
+1.Enhance Classification Model Performance:
+Although your classification models didn't perform well, there's an opportunity to enhance their performance by considering the following:
 
-2. **Code-Semantic Mapping** Integrating NLP with code analysis can offer insights into the semantic relationships between code snippets and natural language explanations. This involves associating code segments with their corresponding explanations to bridge the gap between technical and human-readable content. Employing techniques like code embeddings or code summarization, we can create richer, more informative READMEs that enhance comprehension for both developers and non-technical stakeholders.
+Feature Engineering: Experiment with more advanced text preprocessing techniques like word embeddings (Word2Vec, GloVe) or pre-trained language models (BERT, GPT) to capture semantic relationships.
+Hyperparameter Tuning: Optimize hyperparameters for your classification models to improve their accuracy and robustness.
+Ensemble Learning: Combine the predictions of multiple models using ensemble methods like stacking or boosting, which can often lead to better results.
 
-3. **Multilingual Analysis** and Translation: Expanding our analysis to encompass multilingual repositories can unveil language preferences across diverse coding communities. This involves handling challenges such as code-switching and language-specific idioms. Additionally, incorporating machine translation can facilitate cross-lingual insights, enabling us to bridge language barriers and gain a global perspective on coding practices and trends.
+2. **Trigram Exploration** Further explore trigrams or three consecutive word use to find insights. 
 
-
+[Jump to Navigation](#navigation)
 
 ## <u>Recommendations</u>
-1. **Leverage K-Nearest Neighbors (KNN) for Future Modeling:** Given the success of the KNN classification model with an impressive accuracy of 88%, consider using KNN as a go-to choice for future language prediction tasks. Its ability to predict programming languages based on README content showcases its potential as a reliable and efficient tool in language analysis.
-
-2. **Language-Specific Documentation Enhancement:** Recognizing Python's higher prevalence in READMEs, capitalize on this trend by enhancing language-specific documentation. Develop comprehensive examples, tutorials, and best practices that cater to Python's prevalent usage. This approach will aid developers, especially newcomers to Python, in quickly grasping essential concepts and utilizing the language's features effectively.
+1. **Language-Specific Documentation Enhancement:** Recognizing Python's higher prevalence in READMEs, capitalize on this trend by enhancing language-specific documentation. Develop comprehensive examples, tutorials, and best practices that cater to Python's prevalent usage. This approach will aid developers, especially newcomers to Python, in quickly grasping essential concepts and utilizing the language's features effectively.
 
 3. **Code Reusability and Patterns:** Responding to the significance of "model" and "function" as highly frequent terms, prioritize the promotion of code reusability and design patterns associated with these concepts. Craft libraries, modules, or templates that encapsulate common functionalities or algorithms related to models and functions. This strategic approach fosters efficient development, encourages uniform coding practices, and contributes to cohesive project architectures.
 
-    
+[Jump to Navigation](#navigation)    
 
     
 
