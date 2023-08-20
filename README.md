@@ -148,7 +148,7 @@ Hypothesis 3 - T-Test will be performed on the top 80 most frequent words in the
 
 [Jump to Navigation](#navigation)
 
-## <u>Instructions to Reproduce the Final Project Notebook</u> 
+## <u> How to Reproduce the Final Project Notebook</u> 
 To successfully run/reproduce the final project notebook, please follow these steps:
 
 1. Read this README.md document to familiarize yourself with the project details and key findings.
@@ -178,7 +178,7 @@ By following these instructions, you will be able to reproduce the analysis and 
 * <span style ='color:#151E3D'> 4. The most common bigrams (pairs of adjacent words) in JavaScript code Top 100 Forked ReadMe's were:
 
 4. Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in Python code segments.
-5. 
+
 |Python Bigram         |Count |
 |----------------------|------|
 |1.released paper      | 579  |
@@ -222,14 +222,14 @@ Our investigation extends beyond linguistics, embracing statistical and machine 
 
 ## <u>Next Steps</u>
 
-1.Enhance Classification Model Performance:
-Although your classification models didn't perform well, there's an opportunity to enhance their performance by considering the following:
+1. **Enhance Classification Model Performance:**
+Although our classification models didn't perform well, there's an opportunity to enhance their performance by considering the following:
 
-Feature Engineering: Experiment with more advanced text preprocessing techniques like word embeddings (Word2Vec, GloVe) or pre-trained language models (BERT, GPT) to capture semantic relationships.
+* Feature Engineering: Experiment with more advanced text preprocessing techniques like word embeddings (Word2Vec, GloVe) or pre-trained language models (BERT, GPT) to capture semantic relationships.
 Hyperparameter Tuning: Optimize hyperparameters for your classification models to improve their accuracy and robustness.
 Ensemble Learning: Combine the predictions of multiple models using ensemble methods like stacking or boosting, which can often lead to better results.
 
-2. **Trigram Exploration** Further explore trigrams or three consecutive word use to find insights. 
+2. **Trigram Exploration:** Further explore trigrams or three consecutive word use to find insights. 
 
 [Jump to Navigation](#navigation)
 
