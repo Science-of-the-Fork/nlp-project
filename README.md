@@ -186,7 +186,27 @@ By following these instructions, you will be able to reproduce the analysis and 
 |3.ai released         | 105  |
 |4.research released   | 102  |
 |5.language model      |  85  |
-    
+
+5. **JavaScript code segments, what are the most frequent unigrams encountered?**
+| JavaScript Unigram    |Count |
+|-----------------------|------|
+|1. npm                 | 68   |
+|2. indexjs             | 59   |
+|3. alarm               | 50   |
+|4. dom                 | 47   |
+|5. we're               | 39   |
+
+6. **Python code segments which unigrams have highest frequency?**
+
+|Python Unigram        |Count |
+|----------------------|------|
+|1.paper               | 844  |
+|2.transformer         | 359  |
+|3.pertaining          | 209  |
+|4.face                | 191  |
+|5.research            | 184  |
+
+
 [Jump to Navigation](#navigation)    
 
 ## <u>Statistical and NLP Techniques Findings: </u>
