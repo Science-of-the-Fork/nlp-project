@@ -188,6 +188,7 @@ By following these instructions, you will be able to reproduce the analysis and 
 |5.language model      |  85  |
 
 5. **JavaScript code segments, what are the most frequent unigrams encountered?**
+
 | JavaScript Unigram    |Count |
 |-----------------------|------|
 |1. npm                 | 68   |
