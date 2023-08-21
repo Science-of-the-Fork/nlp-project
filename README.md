@@ -224,8 +224,8 @@ Ensemble Learning: Combine the predictions of multiple models using ensemble met
 [Jump to Navigation](#navigation)
 
 ## <u>Recommendations</u>
-1. **Language-Specific Documentation Enhancement:** Recognizing Python's higher prevalence in READMEs, capitalize on this trend by enhancing language-specific documentation. Develop comprehensive examples, tutorials, and best practices that cater to Python's prevalent usage. This approach will aid developers, especially newcomers to Python, in quickly grasping essential concepts and utilizing the language's features effectively.
-3. **Further Explore  TF-IDF (Term Frequency-Inverse Document Frequency):** Exploring TF-IDF can provide valuable insights by quantifying the importance of words in documents, enabling more accurate text analysis and feature representation in future NLP project interations.
+1. **Use this model:** As it increases performance and therefore gives predictive power to users, we recommend using the Random Forest model over the baseine model for this use case.
+2. **Further Explore  TF-IDF (Term Frequency-Inverse Document Frequency):** Exploring TF-IDF can provide valuable insights by quantifying the importance of words in documents, enabling more accurate text analysis and feature representation in future NLP project interations.
 3. **Code Reusability and Patterns:** Responding to the significance of "model" and "function" as highly frequent terms, prioritize the promotion of code reusability and design patterns associated with these concepts. Craft libraries, modules, or templates that encapsulate common functionalities or algorithms related to models and functions. This strategic approach fosters efficient development, encourages uniform coding practices, and contributes to cohesive project architectures.
 
 [Jump to Navigation](#navigation)    
