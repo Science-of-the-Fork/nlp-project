@@ -338,7 +338,88 @@ def prep_process_csv(language_df):
     language_df.to_csv('processed_language_df.csv', index=False)
     prep_process_csv(language_df)
 
+def words_by_columns(language_df):
+    # Calculate the length of text in each row for different columns
+    language_df['original_length'] = language_df['original'].apply(len)
+    language_df['cleaned_length'] = language_df['cleaned'].apply(len)
+    language_df['lemmatized_length'] = language_df['lemmatized'].apply(len)
+    
+    # Calculate the total length of all words for each column
+    total_original_length = language_df['original_length'].sum()
+    total_cleaned_length = language_df['cleaned_length'].sum()
+    total_lemmatized_length = language_df['lemmatized_length'].sum()
+    
+    # Print the calculated total lengths
+    print("Total length of words in 'original' column:", total_original_length)
+    print("Total length of words in 'cleaned' column:", total_cleaned_length)
+    print("Total length of words in 'lemmatized' column:", total_lemmatized_length)
+    
 
+    
+def words_by_column_bar(language_df):
+    # Calculate the length of text in each row for different columns
+    language_df['original_length'] = language_df['original'].apply(len)
+    language_df['cleaned_length'] = language_df['cleaned'].apply(len)
+    language_df['lemmatized_length'] = language_df['lemmatized'].apply(len)
+    
+    # Calculate the total length of all words for each column
+    total_original_length = language_df['original_length'].sum()
+    total_cleaned_length = language_df['cleaned_length'].sum()
+    total_lemmatized_length = language_df['lemmatized_length'].sum()
+    
+    # Create a bar graph with a larger figure size and custom color palette
+    plt.figure(figsize=(12, 8))  # Adjust the width and height as needed
+    
+    columns = ['original', 'cleaned', 'lemmatized']
+    totals = [total_original_length, total_cleaned_length, total_lemmatized_length]
+    
+    # Custom color palette for the bars
+    color_palette = ['#757575', '#7AA5D2', '#48AAAD']
+    
+    plt.bar(columns, totals, color=color_palette)
+    plt.xlabel('Columns')
+    plt.ylabel('Total Length of Words')
+    plt.title('Total Length of Words by Column')
+    plt.annotate(f"{total_original_length}", (0, total_original_length), textcoords="offset points", xytext=(0,10), ha='center')
+    plt.annotate(f"{total_cleaned_length}", (1, total_cleaned_length), textcoords="offset points", xytext=(0,10), ha='center')
+    plt.annotate(f"{total_lemmatized_length}", (2, total_lemmatized_length), textcoords="offset points", xytext=(0,10), ha='center')
+    
+    plt.tight_layout()  # Ensures proper spacing and layout
+    plt.show()
+    
+
+    
+def words_by_row(language_df):
+    # Calculate the length of text in each row for different columns
+    language_df['original_length'] = language_df['original'].apply(len)
+    language_df['cleaned_length'] = language_df['cleaned'].apply(len)
+    language_df['lemmatized_length'] = language_df['lemmatized'].apply(len)
+    
+    # Calculate the average length of words for each column
+    average_original_length = language_df['original_length'].mean()
+    average_cleaned_length = language_df['cleaned_length'].mean()
+    average_lemmatized_length = language_df['lemmatized_length'].mean()
+    
+    # Create a bar graph with a larger figure size and custom color palette
+    plt.figure(figsize=(12, 8))  # Adjust the width and height as needed
+    
+    columns = ['original', 'cleaned', 'lemmatized']
+    averages = [average_original_length, average_cleaned_length, average_lemmatized_length]
+    
+    # Custom color palette for the bars
+    color_palette = ['#757575', '#7AA5D2', '#48AAAD']
+    
+    plt.bar(columns, averages, color=color_palette)
+    plt.xlabel('Columns')
+    plt.ylabel('Average Length of Words')
+    plt.title('Average Length of Words by Column')
+    plt.annotate(f"{average_original_length:.2f}", (0, average_original_length), textcoords="offset points", xytext=(0,10), ha='center')
+    plt.annotate(f"{average_cleaned_length:.2f}", (1, average_cleaned_length), textcoords="offset points", xytext=(0,10), ha='center')
+    plt.annotate(f"{average_lemmatized_length:.2f}", (2, average_lemmatized_length), textcoords="offset points", xytext=(0,10), ha='center')
+    
+    plt.tight_layout()  # Ensures proper spacing and layout
+    plt.show()
+       
 #---------------Q1-------
 def Q1_pie(language_df):
     ''' Function for Python vs JavaScript Pie'''
@@ -450,74 +531,7 @@ def top_10_words(language_df):
     plt.show()
     
 #------------Q3--------------------------
-
-def Q3_PyBigram_barplot(language_df):
-    # Lemmatized column
-    Py_lemmatized = language_df[language_df['language'] == 'Python']['lemmatized'].str.split().explode()
-    #Top 20 Bigrams
-    top_20_python_bigrams = (pd.Series(nltk.ngrams(Py_lemmatized, 2))
-                          .value_counts()
-                          .head(20))
-    
-    # Sort the bigrams in descending order by frequency
-    top_20_python_bigrams = top_20_python_bigrams.sort_values(ascending=False)
-    
-    # Create the horizontal bar plot
-    plt.figure(figsize=(12, 8))
-    bars = top_20_python_bigrams.plot(kind='barh', color = '#008B8B', width=0.9)
-    
-    # Add count annotations at the end of the bars
-    for bar in bars.patches:
-        plt.text(bar.get_width() + 2, bar.get_y() + bar.get_height() / 2, 
-                 f'{int(bar.get_width())}', 
-                 va='center', ha='left', fontsize=10, color='black')
-    
-    plt.title('Top 20 Most Frequently Occurring Python Bigrams')
-    plt.xlabel('Number Occurrences')
-    plt.ylabel('Bigram')
-    
-    # Make the labels pretty
-    ticks, labels = plt.yticks()
-    new_labels = [f'{bigram[0]} {bigram[1]}' for bigram in top_20_python_bigrams.index]
-    plt.yticks(ticks, new_labels)
-    plt.show()
-
-#------------Q4--------------------
-
-def Q4_PyTrigram_barplot(language_df):
-    # Lemmatized column
-    Py_lemmatized = language_df[language_df['language'] == 'Python']['lemmatized'].str.split().explode()
-    #Top 20 Bigrams
-    top_20_python_bigrams = (pd.Series(nltk.ngrams(Py_lemmatized, 2))
-                          .value_counts()
-                          .head(20))
-    
-    # Sort the Trigram in descending order by frequency
-    top_20_python_trigrams = top_20_python_trigrams.sort_values(ascending=False)
-    
-    # Create the horizontal bar plot
-    plt.figure(figsize=(12, 8))
-    bars = top_20_python_trigrams.plot(kind='barh', color='#008B8B', width=0.9)
-    
-    # Add count annotations at the end of the bars
-    for bar in bars.patches:
-        plt.text(bar.get_width() + 2, bar.get_y() + bar.get_height() / 2, 
-                 f'{int(bar.get_width())}', 
-                 va='center', ha='left', fontsize=10, color='black')
-    
-    plt.title('Top 20 Most Frequently Occurring Python Trigrams')
-    plt.xlabel('Number of Occurrences')
-    plt.ylabel('Trigram')
-    
-    ticks, labels = plt.yticks()
-    new_labels = [f'{trigram[0]} {trigram[1]} {trigram[2]}' for trigram in top_20_python_trigrams.index]
-    plt.yticks(ticks, new_labels)
-    
-    plt.tight_layout()
-    plt.show()
-        
-#--------------Q5----------
-def Q5_JsBigram_barplot(language_df):
+def Q3_JsBigram_barplot(language_df):
     # Original column
     Js_original = language_df[language_df['language'] == 'JavaScript']['original'].str.split().explode()
     
@@ -553,8 +567,42 @@ def Q5_JsBigram_barplot(language_df):
     plt.yticks(ticks, new_labels)
     
     plt.show()
-#-----------------Q6----------------
-def Q6_JsTrigram_barplot(language_df):
+#------------Q4--------------------
+
+def Q4_PyBigram_barplot(language_df):
+    # Lemmatized column
+    Py_lemmatized = language_df[language_df['language'] == 'Python']['lemmatized'].str.split().explode()
+    #Top 20 Bigrams
+    top_20_python_bigrams = (pd.Series(nltk.ngrams(Py_lemmatized, 2))
+                          .value_counts()
+                          .head(20))
+    
+    # Sort the bigrams in descending order by frequency
+    top_20_python_bigrams = top_20_python_bigrams.sort_values(ascending=False)
+    
+    # Create the horizontal bar plot
+    plt.figure(figsize=(12, 8))
+    bars = top_20_python_bigrams.plot(kind='barh', color = '#008B8B', width=0.9)
+    
+    # Add count annotations at the end of the bars
+    for bar in bars.patches:
+        plt.text(bar.get_width() + 2, bar.get_y() + bar.get_height() / 2, 
+                 f'{int(bar.get_width())}', 
+                 va='center', ha='left', fontsize=10, color='black')
+    
+    plt.title('Top 20 Most Frequently Occurring Python Bigrams')
+    plt.xlabel('Number Occurrences')
+    plt.ylabel('Bigram')
+    
+    # Make the labels pretty
+    ticks, labels = plt.yticks()
+    new_labels = [f'{bigram[0]} {bigram[1]}' for bigram in top_20_python_bigrams.index]
+    plt.yticks(ticks, new_labels)
+    plt.show()
+
+
+#--------------Q5----------
+def Q5_JsTrigram_barplot(language_df):
     Js_lemmatized = language_df[language_df['language'] == 'JavaScript']['lemmatized'].str.split().explode()
     top_20_javascript_trigrams = (pd.Series(nltk.ngrams(Js_lemmatized, 3))
                           .value_counts()
@@ -584,6 +632,42 @@ def Q6_JsTrigram_barplot(language_df):
     
     plt.tight_layout()
     plt.show()
+
+#-----------------Q6----------------
+    
+def Q6_PyTrigram_barplot(language_df):
+    # Lemmatized column
+    Py_lemmatized = language_df[language_df['language'] == 'Python']['lemmatized'].str.split().explode()
+    #Top 20 Trigrams
+    top_20_python_trigrams = (pd.Series(nltk.ngrams(Py_lemmatized, 3))
+                          .value_counts()
+                          .head(20))
+    
+    # Sort the Trigram in descending order by frequency
+    top_20_python_trigrams = top_20_python_trigrams.sort_values(ascending=False)
+    
+    # Create the horizontal bar plot
+    plt.figure(figsize=(12, 8))
+    bars = top_20_python_trigrams.plot(kind='barh', color='#008B8B', width=0.9)
+    
+    # Add count annotations at the end of the bars
+    for bar in bars.patches:
+        plt.text(bar.get_width() + 2, bar.get_y() + bar.get_height() / 2, 
+                 f'{int(bar.get_width())}', 
+                 va='center', ha='left', fontsize=10, color='black')
+    
+    plt.title('Top 20 Most Frequently Occurring Python Trigrams')
+    plt.xlabel('Number of Occurrences')
+    plt.ylabel('Trigram')
+    
+    ticks, labels = plt.yticks()
+    new_labels = [f'{trigram[0]} {trigram[1]} {trigram[2]}' for trigram in top_20_python_trigrams.index]
+    plt.yticks(ticks, new_labels)
+    
+    plt.tight_layout()
+    plt.show()
+        
+
 
 #----------TF-IDF-----------
 def tf_idf(language_df):
