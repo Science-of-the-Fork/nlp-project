@@ -58,15 +58,15 @@ The Comparative Analysis of Language Usage project aims to explore and analyze t
 
 1. **Between JavaScript and Python, which language exhibits greater prevalence within the content of the READMEs?**
    
-2. **In a compilation of the top 100 most Forked GitHub repositories, what are the five words that demonstrate the highest frequency of occurrence?**
+2. **What are the most frequently occuring words in Python?**
    
-3. **Within JavaScript code segments, which bigrams, or sequential pairs of words, are commonly encountered?**
+3. **What are the most frequently occuring words in JavaScript?**
    
-4. **In the context of Python code segments, which particular bigrams, or consecutive pairs of words, emerge as prominent occurrences?**
+5. **What are the most frequently occuring words overall?**
 
-5. **JavaScript code segments, what are the most frequent unigrams encountered?**
+6. **What words are unique to Python readmes?**
 
-6. **Python code segments which unigrams have highest frequency?**
+7. **What words are unique to JavaScript readmes**
 
 [Jump to Navigation](#navigation)
 
@@ -126,7 +126,6 @@ Hypothesis 1 - T-Test will be performed on the top 80 most frequent words in the
 
    This step involves:
    - Tokenization: Split the cleaned text into individual words.
-   - Bi-gram Generation: Form pairs of adjacent words to create bi-grams.
    - Unigram Generation: Generate sequences of single word .
    - Frequency Calculation: Count the occurrences of each bi-gram and unigram.
 
@@ -170,30 +169,9 @@ By following these instructions, you will be able to reproduce the analysis and 
 
 * <span style ='color:#151E3D'> 1. Although almost equally distributed, between JavaScript and Python, Python language exhibits greater prevalence within the content of the READMEs at Python 54% to JavaScript at 46%. 
 * <span style ='color:#151E3D'> 2. The word "model" scored the highest across the repositiory ReadMe texts and was the most frequently used, especially in the Python language.The word 'function' was the second highest across all the forked repository ReadMe curated. Of note it was the most frequently used word  JavaScript language       
-* <span style ='color:#151E3D'> 3. Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in JavaScript code segments.
-    
+* <span style ='color:#151E3D'> 3. Unigram frequency analysis. Identify and count the most common unigrams 
 
-| JavaScript Bigram     |Count |
-|-----------------------|------|
-|1. make sure           | 30   |
-|2. npm install         | 21   |
-|3. pull request        | 18   |
-|4. task implement      | 15   |
-|5. implement function  | 14   |
-
-* <span style ='color:#151E3D'> 4. The most common bigrams (pairs of adjacent words) in JavaScript code Top 100 Forked ReadMe's were:
-
-4. Bigram frequency analysis. Identify and count the most common bigrams (pairs of adjacent words) in Python code segments.
-
-|Python Bigram         |Count |
-|----------------------|------|
-|1.released paper      | 579  |
-|2.et al               | 121  |
-|3.ai released         | 105  |
-|4.research released   | 102  |
-|5.language model      |  85  |
-
-5. **JavaScript code segments, what are the most frequent unigrams encountered?**
+**JavaScript findings**
 
 | JavaScript Unigram    |Count |
 |-----------------------|------|
@@ -203,7 +181,7 @@ By following these instructions, you will be able to reproduce the analysis and 
 |4. dom                 | 47   |
 |5. we're               | 39   |
 
-6. **Python code segments which unigrams have highest frequency?**
+ **Python findings?**
 
 |Python Unigram        |Count |
 |----------------------|------|
@@ -229,22 +207,19 @@ Hypothesis 1 - T-Test of the top 5 most significant words:
 [Jump to Navigation](#navigation)
 
 ## <u>Conclusion</u>
-In the realm of Natural Language Processing (NLP), our analysis delved into the linguistic patterns and language prevalence within the READMEs of the top 100 most forked repositories on GitHub. Our findings uncovered several intriguing insights. Firstly, we observed a slightly higher prevalence of the Python language within README contents, constituting 54% of the distribution compared to JavaScript's 46%. Delving into the most frequently used words, "model" surfaced as a dominant term across the repository ReadMe texts, particularly pronounced within the Python language. Additionally, the word "function" held significance across all repositories, notably emerging as the most frequent term in JavaScript. Notably, we engaged in bigram frequency analysis, revealing notable pairs of adjacent words in JavaScript code segments, such as "function expression" and "npm test." 
+In the realm of Natural Language Processing (NLP), our analysis delved into the linguistic patterns and language prevalence within the READMEs of the top 100 most forked repositories on GitHub. Our findings uncovered several intriguing insights. Firstly, we observed a slightly higher prevalence of the Python language within README contents, constituting 54% of the distribution compared to JavaScript's 46%. Delving into the most frequently used words, "model" surfaced as a dominant term across the repository ReadMe texts, particularly pronounced within the Python language. Additionally, the word "function" held significance across all repositories, notably emerging as the most frequent term in JavaScript. Notably, we conducted a t-test on the frequency of the top 5 most significant words ("learning," "test," "library," "create," and "line"), which all demonstrated a statistically significant relationship with their respective programming languages.
 
-Our investigation extends beyond linguistics, embracing statistical and machine learning methodologies. Furthermore, t-tests on the top five most significant words unveil substantial frequency differences, deepening our understanding of language nuances. Incorporating classification models (Decision Tree, Random Forest, K-Nearest Neighbor, Logistic Regression, we will not use any of the classification models as none beat baseline and the model that ran the best was RandomForest which produced a Test score of 38%, 16% below baseline accuracy.  In essence, our analysis encapsulates the multifaceted landscape and challenges of predicting programming languages of GitHub README.md, while offering insights on words that resonate with Github users, developers and the evolving world of open-source coding practices.
-    
+Our exploration extends beyond linguistics to encompass statistical and machine learning techniques. We incorporated classification models including Decision Tree, K-Nearest Neighbor, Logistic Regression, and Random Forest. Remarkably, the Random Forest model exhibited a strong performance, achieving a 63% accuracy in correctly predicting Python or JavaScript. While the baseline model predicted languages with a 54% accuracy, the Random Forest model surpassed it by 9%. This comprehensive analysis unveils the intricacies of predicting programming languages from GitHub README.md files while offering insights into resonating words within the developer community and open-source coding practices.
+
 [Jump to Navigation](#navigation)
 
 ## <u>Next Steps</u>
 
-1. **Enhance Classification Model Performance:**
-Although our classification models didn't perform well, there's an opportunity to enhance their performance by considering the following:
-
-* Feature Engineering: Experiment with more advanced text preprocessing techniques like word embeddings (Word2Vec, GloVe) or pre-trained language models (BERT, GPT) to capture semantic relationships.
+1. ** Feature Engineering:** Experiment with more advanced text preprocessing techniques like word embeddings (Word2Vec, GloVe) or pre-trained language models (BERT, GPT) to capture semantic relationships.
 Hyperparameter Tuning: Optimize hyperparameters for your classification models to improve their accuracy and robustness.
 Ensemble Learning: Combine the predictions of multiple models using ensemble methods like stacking or boosting, which can often lead to better results.
 
-2. **Trigram Exploration:** Further explore trigrams or three consecutive word use to find insights. 
+2. **Bigram and Trigram Exploration:** Further explore trigrams or three consecutive word use to find insights. 
 
 [Jump to Navigation](#navigation)
 
