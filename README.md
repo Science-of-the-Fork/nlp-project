@@ -218,7 +218,6 @@ By following these instructions, you will be able to reproduce the analysis and 
 
 ## <u>Statistical and NLP Techniques Findings: </u>
 
-  
 Hypothesis 1 - T-Test of the top 5 most significant words:
 1. learning
 2. test
@@ -251,7 +250,7 @@ Ensemble Learning: Combine the predictions of multiple models using ensemble met
 
 ## <u>Recommendations</u>
 1. **Language-Specific Documentation Enhancement:** Recognizing Python's higher prevalence in READMEs, capitalize on this trend by enhancing language-specific documentation. Develop comprehensive examples, tutorials, and best practices that cater to Python's prevalent usage. This approach will aid developers, especially newcomers to Python, in quickly grasping essential concepts and utilizing the language's features effectively.
-3. **Further Explore  CountVectorization and TF-IDF:** 
+3. **Further Explore  TF-IDF (Term Frequency-Inverse Document Frequency):** Exploring TF-DOF can provide valuable insights by quantifying the importance of words in documents, enabling more accurate text analysis and feature representation in future NLP project interations.
 3. **Code Reusability and Patterns:** Responding to the significance of "model" and "function" as highly frequent terms, prioritize the promotion of code reusability and design patterns associated with these concepts. Craft libraries, modules, or templates that encapsulate common functionalities or algorithms related to models and functions. This strategic approach fosters efficient development, encourages uniform coding practices, and contributes to cohesive project architectures.
 
 [Jump to Navigation](#navigation)    
