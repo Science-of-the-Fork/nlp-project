@@ -1,16 +1,13 @@
-<p align="left">
+<p align="center">
   <a href="https://github.com/MigashaneVictoire" target="_blank">
     <img alt="Victoire" src="https://img.shields.io/github/followers/MigashaneVictoire?label=Follow_Victoire&style=social" />
   </a>
-    
   <a href="https://github.com/scottmattes1" target="_blank">
     <img alt="Scott" src="https://img.shields.io/github/followers/scottmattes1?label=Follow_Elizabeth&style=social" />
   </a>
-    
   <a href="https://github.com/JonathanTWare" target="_blank">
     <img alt="Fonathan" src="https://img.shields.io/github/followers/JonathanTWare?label=Follow_Victoire&style=social" />
   </a>
-    
   <a href="https://github.com/annie-carter" target="_blank">
     <img alt="Annie" src="https://img.shields.io/github/followers/annie-carter?label=Follow_Elizabeth&style=social" />
   </a>
