@@ -90,17 +90,7 @@ The initial dataset comprised # columns, which reduced to # columns after prepar
 
 ## <u>Statistical Testing Hypothesis and NLP Techniques </u>
 
-Hypothesis 1 - Chi-squared test of independence to determine if the distribution of programming languages (JavaScript, Python) significantly differs within the READMEs.
-
-alpha = .05
-* H0: Programming languages (JavaScript, Python) are not independent of ReadMe
-* Ha: Programming languages (JavaScript, Python) are independent of ReadMe
-* Outcome: We accept or reject the null hypothesis.
-
-
-Hypothesis 2 - Term Frequency-Inverse Document Frequency (TF-IDF) analysis to use scores for words across the repository texts, in order to identify the most significant and frequent words. Selecting the top five words based on their TF-IDF scores.
-
-Hypothesis 3 - T-Test will be performed on the top 80 most frequent words in the curated dataset to determine which are the most 5 significant words and their relationship to Programing languages (Python and JavaScript).  Use words for future modeling.
+Hypothesis 1 - T-Test will be performed on the top 80 most frequent words in the curated dataset to determine which are the most 5 significant words and their relationship to Programing languages (Python and JavaScript).  Use words for future modeling.
 
 * H0: Word did not show significant relationship to programming language (Python and JavaScript) 
 * Ha: Word did show signficant relationship to programming language(Python and JavaScript) 
@@ -228,26 +218,15 @@ By following these instructions, you will be able to reproduce the analysis and 
 
 ## <u>Statistical and NLP Techniques Findings: </u>
 
-Hypothesis 1 - Chi-squared test determined that Programing languages were not of READMEs.We accept the null (H0) hypothesis 
-
-Hypothesis 2 - The top five words based on their TF-IDF scores.    
-    
-|Word       |TF-IDF Score |
-|-----------|-------------|
-|1. model   |  578        |
-|2. function|  298        |
-|3. test    |  242        |
-|4. use     |  232        |
-|5. code    |  255        |    
-    
-Hypothesis 3 - T-Test of the top 5 most significant words:
+  
+Hypothesis 1 - T-Test of the top 5 most significant words:
 1. learning
 2. test
 3. library
 4. create
 5. line
 * Outcome - Ha: They all rejected the null hypothesis and showed relationship to the program language.
-* 
+
 [Jump to Navigation](#navigation)
 
 ## <u>Conclusion</u>
