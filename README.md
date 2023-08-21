@@ -1,3 +1,20 @@
+<p align="left">
+  <a href="https://github.com/MigashaneVictoire" target="_blank">
+    <img alt="Victoire" src="https://img.shields.io/github/followers/MigashaneVictoire?label=Follow_Victoire&style=social" />
+  </a>
+  <a href="https://github.com/scottmattes1" target="_blank">
+    <img alt="Elizabeth" src="https://img.shields.io/github/followers/elizabethswarren?label=Follow_Elizabeth&style=social" />
+  </a>
+  <a href="https://github.com/JonathanTWare" target="_blank">
+    <img alt="Victoire" src="https://img.shields.io/github/followers/MigashaneVictoire?label=Follow_Victoire&style=social" />
+  </a>
+  <a href="https://github.com/annie-carter" target="_blank">
+    <img alt="Elizabeth" src="https://img.shields.io/github/followers/elizabethswarren?label=Follow_Elizabeth&style=social" />
+  </a>
+</p>
+
+---
+
 # Comparative Analysis of Language Usage in the Top 100 Forked GitHub Repositories
 # <bu> NATURAL LANGUAGE PROCESSING PROJECT</bu>
 by Jon Ware, Annie Carter, Scott Mattes, Migashane Victoire
